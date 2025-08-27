@@ -1,0 +1,33 @@
+{
+  "JSONSchema": {
+    "properties": {
+      "isIgnoreErrorAnswer": {
+        "type": "boolean",
+        "title": "Ignore error answer",
+        "default": false
+      },
+      "completedMessages": {
+        "type": "object",
+        "title": "Messages",
+        "properties": {
+          "success": {
+            "title": "Success message",
+            "type": "string",
+            "default": "You did a great job!"
+          },
+          "wrong": {
+            "title": "Wrong message",
+            "type": "string",
+            "default": "Sorry, you are wrong."
+          }
+        }
+      }
+    }
+  },
+  "UISchema": {
+    "isIgnoreErrorAnswer": {
+      "ui:widget": "checkbox",
+      "ui:help": "If checked, the answer will be ignored if an error occurs."
+    }
+  }
+}
