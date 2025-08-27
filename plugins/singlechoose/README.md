@@ -9,10 +9,9 @@ A single-answer quiz component for the Coob learning platform that allows creati
 - **Option Shuffling**: Options are randomly shuffled for each student attempt
 - **Mobile-Responsive Design**: Adaptive UI with special mobile editing mode
 - **Multilingual Support**: Built-in English and Russian language support
-- **Customizable Messages**: Configure success and error messages
 - **Explanation Support**: Add explanations for wrong answers
-- **Error Handling**: Configurable error handling options
 - **Interactive UI**: Icons, smooth animations, and intuitive controls
+- **Validation**: Comprehensive input validation (2-10 options, required text)
 
 ## Plugin Structure
 
@@ -139,9 +138,20 @@ Plugin settings are defined in `settings.json` using JSON Schema:
         }
       }
     }
+  },
+  "UISchema": {
+    "isIgnoreErrorAnswer": {
+      "ui:widget": "checkbox",
+      "ui:help": "If checked, the answer will be ignored if an error occurs."
+    }
   }
 }
 ```
+
+**Available Settings:**
+- **isIgnoreErrorAnswer**: When enabled, treats wrong answers as correct (useful for debugging)
+- **completedMessages.success**: Custom message shown for correct answers
+- **completedMessages.wrong**: Custom message shown for incorrect answers
 
 ### Answer Processing
 
@@ -182,9 +192,9 @@ end
 3. **Mobile Considerations**:
    - On mobile devices, explanations are edited in a separate mode
    - Use the "Back" button to return to option editing
-4. **Customize Settings**:
-   - Set success and error messages
-   - Configure error handling options
+4. **Customize Settings** (optional):
+   - Set custom success and error messages
+   - Enable "Ignore error answer" for debugging
 5. **Test**: Preview the question to ensure it works correctly
 
 ### For Students
