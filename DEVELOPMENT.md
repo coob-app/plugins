@@ -67,6 +67,14 @@ plugin-name/
 - npm or yarn
 - Git
 
+### Technology Stack
+
+- **Preact** - Lightweight React alternative for UI components
+- **Webpack** - Module bundler with inline script support
+- **Babel** - JavaScript transpiler with React JSX support
+- **CSS Modules** - Scoped styling for components
+- **Preact Feather Icons** - Icon library for UI elements
+
 ### Quick Start
 
 1. **Clone the repository**:
@@ -332,7 +340,42 @@ $_bx.event().on("before_save_state", (v) => {
 - Optimize images and assets
 - Cache expensive calculations
 
-### 5. Internationalization
+### 5. Validation
+
+```javascript
+// Comprehensive validation example
+$_bx.event().on("before_save_state", (v) => {
+    // Check minimum options
+    if (this.state.options.length < 2) {
+        $_bx.showErrorMessage("Add at least 2 options");
+        return;
+    }
+    
+    // Check maximum options
+    if (this.state.options.length > 10) {
+        $_bx.showErrorMessage("Maximum 10 options allowed");
+        return;
+    }
+    
+    // Check single correct answer
+    const correctOptions = this.state.options.filter(opt => opt.isCorrect);
+    if (correctOptions.length !== 1) {
+        $_bx.showErrorMessage("Select exactly one correct answer");
+        return;
+    }
+    
+    // Check option text
+    const emptyOptions = this.state.options.filter(opt => !opt.text.trim());
+    if (emptyOptions.length > 0) {
+        $_bx.showErrorMessage("All options must have text");
+        return;
+    }
+    
+    v.state = this.state;
+});
+```
+
+### 6. Internationalization
 
 ```javascript
 // Use language-specific messages
@@ -349,6 +392,32 @@ const messages = {
 
 const currentLanguage = $_bx.language();
 const message = messages[currentLanguage] || messages.en;
+```
+
+### 7. Mobile Responsiveness
+
+```javascript
+// Detect mobile devices
+const isMobile = window.innerWidth <= 600;
+
+// Adapt UI for mobile
+if (isMobile) {
+    // Use mobile-specific layout
+    // Separate editing modes for better UX
+}
+```
+
+### 8. Option Shuffling
+
+```javascript
+// Shuffle options to prevent memorization
+shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 ```
 
 ## Testing

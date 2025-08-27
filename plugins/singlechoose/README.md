@@ -6,10 +6,13 @@ A single-answer quiz component for the Coob learning platform that allows creati
 
 - **Multiple Choice Questions**: Create questions with 2-10 answer options
 - **Single Correct Answer**: Only one option can be marked as correct
+- **Option Shuffling**: Options are randomly shuffled for each student attempt
+- **Mobile-Responsive Design**: Adaptive UI with special mobile editing mode
+- **Multilingual Support**: Built-in English and Russian language support
 - **Customizable Messages**: Configure success and error messages
 - **Explanation Support**: Add explanations for wrong answers
 - **Error Handling**: Configurable error handling options
-- **Responsive Design**: Works on desktop and mobile devices
+- **Interactive UI**: Icons, smooth animations, and intuitive controls
 
 ## Plugin Structure
 
@@ -37,6 +40,14 @@ singlechoose/
 
 - Node.js (v14 or higher)
 - npm or yarn
+
+### Technology Stack
+
+- **Preact** - Lightweight React alternative for UI components
+- **Webpack** - Module bundler with inline script support
+- **Babel** - JavaScript transpiler with React JSX support
+- **CSS Modules** - Scoped styling for components
+- **Preact Feather Icons** - Icon library for UI elements
 
 ### Installation
 
@@ -68,6 +79,7 @@ The plugin maintains state through `state.json`:
 
 ```json
 {
+  "multiple": false,
   "question": "What is the capital of France?",
   "options": [
     {
@@ -88,6 +100,14 @@ The plugin maintains state through `state.json`:
   ]
 }
 ```
+
+### Option Shuffling
+
+The plugin automatically shuffles options for each student attempt to prevent memorization:
+
+- **When shuffling occurs**: On first view or after incorrect answers
+- **Index preservation**: Original option indices are preserved via `id` field
+- **Randomization**: Uses Fisher-Yates shuffle algorithm for fair distribution
 
 ### Settings Configuration
 
@@ -156,20 +176,26 @@ end
 1. **Add the Plugin**: Select "Single Choose" from the plugin library
 2. **Configure the Question**: 
    - Enter your question text
-   - Add 2-10 answer options
-   - Mark one option as correct
+   - Add 2-10 answer options (minimum 2, maximum 10)
+   - Mark exactly one option as correct
    - Add explanations for wrong answers (optional)
-3. **Customize Settings**:
+3. **Mobile Considerations**:
+   - On mobile devices, explanations are edited in a separate mode
+   - Use the "Back" button to return to option editing
+4. **Customize Settings**:
    - Set success and error messages
    - Configure error handling options
-4. **Test**: Preview the question to ensure it works correctly
+5. **Test**: Preview the question to ensure it works correctly
 
 ### For Students
 
 1. **Read the Question**: Carefully read the question and all options
 2. **Select an Answer**: Click on the option you believe is correct
+   - Options are shuffled for each attempt to prevent memorization
+   - You can click either the radio button or the option text
 3. **Submit**: Click the submit button to check your answer
 4. **Review Feedback**: Read the feedback message and any explanations
+   - If incorrect, you'll see the explanation for the chosen option (if provided)
 
 ## API Integration
 
@@ -180,14 +206,46 @@ The plugin uses the `$_bx` API for platform integration:
 ```javascript
 // Editor interface - validate before saving
 $_bx.event().on("before_save_state", (v) => {
-    // Validation logic
+    // Validation logic with multilingual support
+    const userLanguage = $_bx.language() || "en";
+    const messages = {
+        en: {
+            addOption: "Please add at least one option",
+            selectCorrect: "Please select a correct option",
+            selectOnlyOne: "Please select only one correct option",
+            addAtMost: "Please add at most 10 options",
+            enterText: "Please enter option text in all options",
+            addAtLeastTwo: "Please add at least two options"
+        },
+        ru: {
+            addOption: "Добавьте как минимум один вариант",
+            selectCorrect: "Выберите правильный вариант",
+            selectOnlyOne: "Выберите только один правильный вариант",
+            addAtMost: "Добавьте не более 10 вариантов",
+            enterText: "Введите текст для всех вариантов",
+            addAtLeastTwo: "Добавьте как минимум два варианта"
+        }
+    };
+    
+    const userMessages = messages[userLanguage];
+    
     if (this.state.options.length === 0) {
-        $_bx.showErrorMessage("Please add at least one option");
+        $_bx.showErrorMessage(userMessages.addOption);
         return;
     }
     
     if (this.state.options.filter(option => option.isCorrect).length !== 1) {
-        $_bx.showErrorMessage("Please select exactly one correct answer");
+        $_bx.showErrorMessage(userMessages.selectOnlyOne);
+        return;
+    }
+    
+    if (this.state.options.length > 10) {
+        $_bx.showErrorMessage(userMessages.addAtMost);
+        return;
+    }
+    
+    if (this.state.options.length === 1) {
+        $_bx.showErrorMessage(userMessages.addAtLeastTwo);
         return;
     }
     
@@ -197,7 +255,7 @@ $_bx.event().on("before_save_state", (v) => {
 // Student view - validate before submitting
 $_bx.event().on("before_submit", (v) => {
     if (this.state.answer === null || this.state.answer < 0) {
-        $_bx.showErrorMessage("Please select an option to continue");
+        $_bx.showErrorMessage("Error: Please select an option to continue.");
         return;
     }
     v.state.answer = this.state.answer;
@@ -241,6 +299,16 @@ $_bx.event().on("before_submit", (v) => {
 
 ## Customization
 
+### Mobile Responsiveness
+
+The plugin includes special mobile adaptations:
+
+- **Mobile Detection**: Automatically detects screens ≤600px width
+- **Separate Editing Mode**: On mobile, explanations are edited in a dedicated view
+- **Back Navigation**: "Back" button to return from explanation editing
+- **Adaptive Layout**: Form fields adjust width for mobile screens
+- **Touch-Friendly**: Larger touch targets for mobile interaction
+
 ### Styling
 
 The plugin uses CSS modules for styling. To customize the appearance:
@@ -257,13 +325,27 @@ To extend functionality:
 3. Adjust the state schema if needed
 4. Test thoroughly before publishing
 
+## Validation Rules
+
+The plugin enforces several validation rules:
+
+- **Minimum Options**: At least 2 options must be provided
+- **Maximum Options**: No more than 10 options allowed
+- **Single Correct Answer**: Exactly one option must be marked as correct
+- **Option Text**: All options must have non-empty text content
+- **Question Text**: Question field cannot be empty
+
 ## Troubleshooting
 
 ### Common Issues
 
 1. **Build Errors**: Ensure all dependencies are installed with `npm install`
-2. **Validation Errors**: Check that exactly one option is marked as correct
+2. **Validation Errors**: 
+   - Check that exactly one option is marked as correct
+   - Ensure you have 2-10 options with text content
+   - Verify question text is not empty
 3. **Display Issues**: Clear browser cache and rebuild the plugin
+4. **Mobile Issues**: Test on actual mobile devices, not just browser dev tools
 
 ### Debug Mode
 
