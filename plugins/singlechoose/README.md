@@ -4,8 +4,8 @@ A single-answer quiz component for the Coob learning platform that allows creati
 
 ## Features
 
-- **Multiple Choice Questions**: Create questions with 2-10 answer options
-- **Single Correct Answer**: Only one option can be marked as correct
+- **Single Choice Questions**: Create questions with 2-10 answer options (only one correct answer)
+- **Single Correct Answer**: Only one option can be marked as correct (no multiple selection)
 - **Option Shuffling**: Options are randomly shuffled for each student attempt
 - **Mobile-Responsive Design**: Adaptive UI with special mobile editing mode
 - **Multilingual Support**: Built-in English and Russian language support
@@ -16,7 +16,7 @@ A single-answer quiz component for the Coob learning platform that allows creati
 ## Plugin Structure
 
 ```
-singlechoose/
+й/
 ├── src/
 │   ├── edit/          # Editor interface source code
 │   └── view/          # Student view source code
@@ -78,7 +78,6 @@ The plugin maintains state through `state.json`:
 
 ```json
 {
-  "multiple": false,
   "question": "What is the capital of France?",
   "options": [
     {
@@ -187,7 +186,7 @@ end
 2. **Configure the Question**: 
    - Enter your question text
    - Add 2-10 answer options (minimum 2, maximum 10)
-   - Mark exactly one option as correct
+   - Mark exactly one option as correct (single choice only)
    - Add explanations for wrong answers (optional)
 3. **UI Features**:
    - "Add Option" button appears only when less than 10 options
@@ -204,9 +203,10 @@ end
 ### For Students
 
 1. **Read the Question**: Carefully read the question and all options
-2. **Select an Answer**: Click on the option you believe is correct
+2. **Select an Answer**: Click on the option you believe is correct (single choice only)
    - Options are shuffled for each attempt to prevent memorization
    - You can click either the radio button or the option text
+   - Only one option can be selected at a time
 3. **Submit**: Click the submit button to check your answer
 4. **Review Feedback**: Read the feedback message and any explanations
    - If incorrect, you'll see the explanation for the chosen option (if provided)
@@ -345,7 +345,7 @@ The plugin enforces several validation rules based on the code:
 
 - **Minimum Options**: At least 2 options must be provided (`this.state.options.length === 1` triggers error)
 - **Maximum Options**: No more than 10 options allowed (`this.state.options.length > 10` triggers error)
-- **Single Correct Answer**: Exactly one option must be marked as correct
+- **Single Correct Answer**: Exactly one option must be marked as correct (single choice validation)
 - **Option Text**: All options must have non-empty text content (validated by `validateOptions()`)
 - **Question Text**: Question field cannot be empty
 - **No Empty Options**: Cannot save with 0 options (`this.state.options.length === 0` triggers error)
