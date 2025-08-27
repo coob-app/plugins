@@ -62,13 +62,29 @@ npm run build
 
 ### Publishing Plugins
 
-Use the coobcli tool to publish plugins:
+Use the coobcli tool to publish plugins. **Important**: You must authenticate with your coob.app account before publishing.
+
+#### 1. Install coobcli
 
 ```bash
 npm install -g coobcli
-coobcli login
-coobcli publish
 ```
+
+#### 2. Authenticate with your coob.app account
+
+```bash
+npx coobcli login
+```
+
+This will prompt you to enter your coob.app credentials. You need to authenticate before you can publish any plugins.
+
+#### 3. Publish your plugin
+
+```bash
+npx coobcli publish
+```
+
+**Note**: Make sure you're in the plugin directory when running the publish command.
 
 ## Plugin Development Guide
 

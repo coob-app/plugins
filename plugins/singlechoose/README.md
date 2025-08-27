@@ -208,20 +208,26 @@ $_bx.event().on("before_submit", (v) => {
 
 ### Using coobcli
 
+**Important**: You must authenticate with your coob.app account before publishing.
+
 1. Install the CLI tool:
    ```bash
    npm install -g coobcli
    ```
 
-2. Login to your account:
+2. **Authenticate with your coob.app account**:
    ```bash
-   coobcli login
+   npx coobcli login
    ```
+   
+   This will prompt you to enter your coob.app credentials. You need to authenticate before you can publish any plugins.
 
 3. Publish the plugin:
    ```bash
-   coobcli publish
+   npx coobcli publish
    ```
+   
+   **Note**: Make sure you're in the plugin directory when running the publish command.
 
 ### Manual Publishing
 
