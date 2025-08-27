@@ -11,7 +11,7 @@ A single-answer quiz component for the Coob learning platform that allows creati
 - **Multilingual Support**: Built-in English and Russian language support
 - **Explanation Support**: Add explanations for wrong answers
 - **Interactive UI**: Icons, smooth animations, and intuitive controls
-- **Validation**: Comprehensive input validation (2-10 options, required text)
+- **Validation**: Comprehensive input validation (minimum 2, maximum 10 options)
 
 ## Plugin Structure
 
@@ -189,13 +189,17 @@ end
    - Add 2-10 answer options (minimum 2, maximum 10)
    - Mark exactly one option as correct
    - Add explanations for wrong answers (optional)
-3. **Mobile Considerations**:
+3. **UI Features**:
+   - "Add Option" button appears only when less than 10 options
+   - Options counter shows current count: "Options (X)"
+   - Delete button (trash icon) for each option
+4. **Mobile Considerations**:
    - On mobile devices, explanations are edited in a separate mode
    - Use the "Back" button to return to option editing
-4. **Customize Settings** (optional):
+5. **Customize Settings** (optional):
    - Set custom success and error messages
    - Enable "Ignore error answer" for debugging
-5. **Test**: Preview the question to ensure it works correctly
+6. **Test**: Preview the question to ensure it works correctly
 
 ### For Students
 
@@ -337,13 +341,14 @@ To extend functionality:
 
 ## Validation Rules
 
-The plugin enforces several validation rules:
+The plugin enforces several validation rules based on the code:
 
-- **Minimum Options**: At least 2 options must be provided
-- **Maximum Options**: No more than 10 options allowed
+- **Minimum Options**: At least 2 options must be provided (`this.state.options.length === 1` triggers error)
+- **Maximum Options**: No more than 10 options allowed (`this.state.options.length > 10` triggers error)
 - **Single Correct Answer**: Exactly one option must be marked as correct
-- **Option Text**: All options must have non-empty text content
+- **Option Text**: All options must have non-empty text content (validated by `validateOptions()`)
 - **Question Text**: Question field cannot be empty
+- **No Empty Options**: Cannot save with 0 options (`this.state.options.length === 0` triggers error)
 
 ## Troubleshooting
 
