@@ -1,0 +1,20 @@
+{
+  "status": "active",
+  "version": "1.1",
+  "name": "Single Choose",
+  "description": "<div class=\"component-description\">\n  <p>The Single choose component allows you to create quizzes with single-answer questions for educational courses. It provides learners with a clear and interactive way to test their knowledge by selecting one correct answer from a list of options. Feedback is displayed instantly to guide learners, making it an effective tool for reinforcing concepts and tracking progress.</p>\n</div>",
+  "short_description": "Single-answer quiz questions",
+  "icon": "./dist/icon.png",
+
+  "settings" : {
+    "answerRequired": true
+  },
+
+  "entry": {
+    "state": "./dist/state.json",
+    "handler": "./dist/handler.lua",
+    "settings": "./dist/settings.json",
+    "edit": "./dist/edit.html",
+    "view": "./dist/view.html"
+  }
+}
