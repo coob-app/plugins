@@ -1,0 +1,379 @@
+.edit-container {
+    margin: 0 auto;
+    color: var(--bx-text-color, #333);
+}
+
+.form-section {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+
+
+.form-hint {
+    font-size: 0.85rem;
+    color: var(--bx-hint-color, #666);
+    margin-bottom: 8px;
+    font-style: italic;
+}
+
+
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+    height: 180px;
+    overflow-y: auto;
+    padding: 10px;
+    background: var(--bx-secondary-background-color, #fff);
+    border-radius: 12px;
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: var(--bx-background-color, #fff);
+    border-radius: 12px;
+    border: 1px solid var(--bx-border-color, #dee2e6);
+    flex-shrink: 0;
+}
+
+.correct-radio {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* Стили для bx-form-input внутри option-item */
+.option-item .bx-form-input {
+    flex: 1;
+    margin-right: 8px;
+}
+
+/* Стили для ошибок валидации */
+.validation-errors {
+    margin-bottom: 20px;
+    padding: 16px;
+    background: var(--bx-danger-light-bg, #f8d7da);
+    border: 1px solid var(--bx-danger-color, #dc3545);
+    border-radius: 8px;
+}
+
+.validation-errors h3 {
+    margin: 0 0 12px 0;
+    color: var(--bx-danger-color, #dc3545);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.validation-errors ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.validation-errors li {
+    margin-bottom: 8px;
+    color: var(--bx-danger-color, #dc3545);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.error-item {
+    font-weight: 500;
+}
+
+.error-noCorrectAnswer {
+    color: var(--bx-danger-color, #dc3545);
+}
+
+.error-insufficientOptions {
+    color: var(--bx-warning-color, #ffc107);
+}
+
+.error-emptyOption {
+    color: var(--bx-danger-color, #dc3545);
+}
+
+.error-emptyQuestion {
+    color: var(--bx-danger-color, #dc3545);
+}
+
+
+
+.remove-option-btn {
+    background: var(--bx-danger-color, #dc3545);
+    color: var(--bx-button-text-color, #fff);
+    border: none;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background-color 0.2s ease;
+}
+
+.remove-option-btn:hover {
+    background: var(--bx-danger-hover-color, #c82333);
+}
+
+.correct-indicator {
+    font-size: 0.85rem;
+    color: var(--bx-success-color, #28a745);
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.add-option-btn {
+    background: var(--bx-button-color, #28a745);
+    color: var(--bx-button-text-color, #fff);
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.add-option-btn:hover {
+    background: var(--bx-button-color, #218838);
+}
+
+/* Quiz Navigation */
+.quiz-navigation {
+    margin-bottom: 20px;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.quiz-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.quiz-tab {
+    position: relative;
+    color: var(--bx-text-color, #333);
+    background: var(--bx-background-color, #fff);
+    border: 2px solid var(--bx-hint-color, #666);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 70px;
+    text-align: center;
+}
+
+.quiz-tab:hover {
+    border-color: var(--bx-button-color, #007bff);
+    background: var(--bx-button-color, #e3f2fd);
+    color: var(--bx-button-text-color, #fff);
+}
+
+.quiz-tab.active {
+    border-color: var(--bx-button-color, #007bff);
+    background: var(--bx-button-color, #e3f2fd);
+    color: var(--bx-button-text-color, #fff);
+}
+
+.remove-quiz-btn {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--bx-danger-color, #dc3545);
+    color: var(--bx-button-text-color, #fff);
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.remove-quiz-btn:hover {
+    background: var(--bx-danger-hover-color, #c82333);
+}
+
+.add-quiz-btn {
+    background: var(--bx-button-color, #28a745);
+    color: var(--bx-button-text-color, #fff);
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.add-quiz-btn:hover {
+    background: var(--bx-button-color, #218838);
+}
+
+
+
+/* Custom scrollbar for options list */
+.options-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.options-list::-webkit-scrollbar-track {
+    background: var(--bx-light-bg-color, #f1f1f1);
+    border-radius: 4px;
+}
+
+.options-list::-webkit-scrollbar-thumb {
+    background: var(--bx-border-color, #c1c1c1);
+    border-radius: 4px;
+}
+
+.options-list::-webkit-scrollbar-thumb:hover {
+    background: var(--bx-text-color, #a8a8a8);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .edit-container {
+    }
+
+
+
+    .quiz-tabs {
+        gap: 6px;
+    }
+
+    .quiz-tab {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+        min-width: 70px;
+    }
+
+
+
+    .option-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+
+}
+
+@media (max-width: 480px) {
+    .edit-container {
+        padding: 12px;
+    }
+
+
+
+    .quiz-navigation {
+        padding: 12px;
+    }
+
+    .quiz-tabs {
+        gap: 4px;
+    }
+
+    .quiz-tab {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+        min-width: 60px;
+    }
+
+
+
+    .form-textarea {
+        font-size: 0.95rem;
+    }
+}
+
+/* Import Section Styles - Compact */
+.import-section {
+    margin-bottom: 20px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--bx-border-color, #e1e5e9);
+}
+
+.import-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.import-text {
+    color: var(--bx-hint-color, #666);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.import-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.download-example-btn,
+.import-file-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--bx-secondary-background-color, #f8f9fa);
+    color: var(--bx-text-color, #333);
+    border: 2px solid var(--bx-hint-color, #dee2e6);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.download-example-btn {
+    text-decoration: none;
+}
+
+.download-example-btn:hover,
+.import-file-btn:hover {
+    background: var(--bx-primary-color, #007bff);
+    color: white;
+    border-color: var(--bx-primary-color, #007bff);
+    transform: translateY(-1px);
+}
+
+.import-file-btn:hover {
+    background: var(--bx-success-color, #28a745);
+    border-color: var(--bx-success-color, #28a745);
+}
+
+/* Responsive design for import section */
+@media (max-width: 768px) {
+    .import-buttons {
+        gap: 6px;
+    }
+    
+    .download-example-btn,
+    .import-file-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+}

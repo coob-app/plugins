@@ -1,0 +1,13 @@
+{
+  "quizTitle": "",
+  "quizzes": [
+    {
+      "id": 1,
+      "question": "",
+      "options": [],
+      "correctAnswer": -1
+    }
+  ],
+  "currentQuestionIndex": 0,
+  "totalQuestions": 1
+}

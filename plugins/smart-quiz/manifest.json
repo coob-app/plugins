@@ -1,0 +1,20 @@
+{
+  "status": "active",
+  "version": "2.0.0",
+  "name": "Smart Quiz",
+  "description": "<div class=\"component-description\">\n  <h3>🎯 Advanced Multiple-Choice Quiz Component</h3>\n  <p>The Smart Quiz component is a powerful, feature-rich multiple-choice quiz system designed for educational courses. It provides comprehensive assessment capabilities with intelligent features and customizable settings.</p>\n  \n  <h4>✨ Key Features:</h4>\n  <ul>\n    <li><strong>🎲 Smart Answer Shuffling</strong> - Randomize answer options to prevent cheating</li>\n    <li><strong>📊 Progress Tracking</strong> - Visual progress bar showing completion status</li>\n    <li><strong>🧭 Flexible Navigation</strong> - Optional question navigation with smart access control</li>\n    <li><strong>💬 Detailed Feedback</strong> - Comprehensive results with correct/incorrect answers</li>\n    <li><strong>🔄 Smart Retry System</strong> - Automatic retry option based on passing score</li>\n    <li><strong>🎯 Passing Score Control</strong> - Set minimum score requirements</li>\n    <li><strong>💾 State Persistence</strong> - Saves progress automatically across sessions</li>\n    <li><strong>🌐 Multi-language Support</strong> - English and Russian translations</li>\n  </ul>\n  \n  <h4>🎛️ Customizable Settings:</h4>\n  <ul>\n    <li><strong>Shuffle Options</strong> - Enable/disable answer randomization</li>\n    <li><strong>Show Progress Bar</strong> - Display completion progress</li>\n    <li><strong>Question Navigation</strong> - Allow jumping between questions</li>\n    <li><strong>Show Feedback</strong> - Display detailed results and explanations</li>\n    <li><strong>Allow Retry</strong> - Enable quiz retake functionality</li>\n    <li><strong>Passing Score</strong> - Set minimum score for completion</li>\n  </ul>\n  \n  <p>Perfect for knowledge assessment, skill evaluation, and interactive learning experiences. Ideal for courses requiring comprehensive testing with flexible configuration options.</p>\n</div>",
+  "short_description": "Advanced multiple-choice quiz",
+  "icon": "./dist/icon.png",
+
+  "settings" : {
+    "answerRequired": true
+  },
+
+  "entry": {
+    "state": "./dist/state.json",
+    "handler": "./dist/handler.lua",
+    "settings": "./dist/settings.json",
+    "edit": "./dist/edit.html",
+    "view": "./dist/view.html"
+  }
+}

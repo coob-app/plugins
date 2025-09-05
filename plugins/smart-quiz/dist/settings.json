@@ -1,0 +1,101 @@
+{
+  "JSONSchema": {
+    "properties": {
+      "shuffleOptions": {
+        "type": "boolean",
+        "title": "Shuffle Answer Options",
+        "description": "Randomize the order of answer options for each question to prevent cheating",
+        "default": true
+      },
+      "showFeedback": {
+        "type": "boolean",
+        "title": "Show Detailed Feedback",
+        "description": "Display detailed feedback after quiz completion showing correct and incorrect answers",
+        "default": true
+      },
+      "showCorrectAnswers": {
+        "type": "boolean",
+        "title": "Show Correct Answers",
+        "description": "Display the correct answer for each question in the results (only for incorrect answers)",
+        "default": false
+      },
+      "allowRetry": {
+        "type": "boolean",
+        "title": "Allow Quiz Retry",
+        "description": "Allow students to retake the quiz after completion",
+        "default": true
+      },
+      "maxRetries": {
+        "type": "integer",
+        "title": "Maximum Retries",
+        "description": "Maximum number of retry attempts allowed for students (0 = unlimited)",
+        "default": 0,
+        "minimum": 0,
+        "maximum": 10
+      },
+      "showProgress": {
+        "type": "boolean",
+        "title": "Show Progress Bar",
+        "description": "Display progress bar showing quiz completion status",
+        "default": true
+      },
+      "questionNavigation": {
+        "type": "boolean",
+        "title": "Enable Question Navigation",
+        "description": "Allow students to navigate between questions using navigation buttons",
+        "default": true
+      },
+      "passingScore": {
+        "type": "integer",
+        "title": "Passing Score (%)",
+        "description": "Minimum percentage required to pass the quiz",
+        "default": 70,
+        "minimum": 0,
+        "maximum": 100
+      },
+      "completedMessages": {
+        "type": "object",
+        "title": "Messages",
+        "properties": {
+          "success": {
+            "title": "Success message",
+            "type": "string",
+            "default": "You did a great job!"
+          },
+          "wrong": {
+            "title": "Wrong message",
+            "type": "string",
+            "default": "Sorry, you are wrong."
+          }
+        }
+      }
+    },
+    "required": []
+  },
+  "UISchema": {
+    "shuffleOptions": {
+      "ui:help": "When enabled, answer options will be randomly shuffled for each student to prevent cheating"
+    },
+    "showFeedback": {
+      "ui:help": "When enabled, students will see detailed feedback after completing the quiz"
+    },
+    "showCorrectAnswers": {
+      "ui:help": "When enabled, students will see the correct answer for questions they answered incorrectly"
+    },
+    "allowRetry": {
+      "ui:help": "When enabled, students can retake the quiz multiple times"
+    },
+    "showProgress": {
+      "ui:help": "When enabled, a progress bar will show the student's completion status"
+    },
+    "questionNavigation": {
+      "ui:help": "When enabled, students can use navigation buttons to move between questions"
+    },
+    "passingScore": {
+      "ui:help": "Set the minimum percentage score required to pass the quiz"
+    },
+    "maxRetries": {
+      "ui:help": "Set the maximum number of retry attempts (0 = unlimited retries)"
+    }
+  }
+}
